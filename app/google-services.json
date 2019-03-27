@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "633557982970",
+    "firebase_url": "https://androidprojectmitutor.firebaseio.com",
+    "project_id": "androidprojectmitutor",
+    "storage_bucket": "androidprojectmitutor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:633557982970:android:b61c78894247013c",
+        "android_client_info": {
+          "package_name": "com.iteso.mitutor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "633557982970-5bqcrmbe02ibes83rnu1bs445qojf7ht.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.iteso.mitutor",
+            "certificate_hash": "4f80add9845f73f0e1b482a2fc9bf89b56d9e958"
+          }
+        },
+        {
+          "client_id": "633557982970-105os47ce1g9o8tvf0jofvsm25fuorcj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAPZeknGugg9w4oOmC86vb-sPn4WlI7so"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "633557982970-105os47ce1g9o8tvf0jofvsm25fuorcj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
