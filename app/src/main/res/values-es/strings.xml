@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mi Tutor</string>
+    <string name="welcome">Bienvenido!!</string>
+    <string name="view_more">Ver más...</string>
+
+    <string name="menu_profile">Perfil</string>
+    <string name="menu_chat">Mensajes</string>
+    <string name="menu_logout">Cerrar Sesión</string>
+    <string name="menu_main">Inicio</string>
+</resources>
