@@ -5,4 +5,10 @@
     <color name="colorAccent">#EC576B</color>
     <color name="colorPrimary">#4EC5C1</color>
     <color name="colorLightAccent">#E5E338</color>
+
+    <color name="colorDarkPink">#7C0A16</color>
+    <color name="colorPaleDarkPink">#CB596E</color>
+    <color name="colorGreen">#1D8521</color>
+    <color name="colorDarkBlue">#2C3D8B</color>
+    <color name="colorLightGray">#979595</color>
 </resources>

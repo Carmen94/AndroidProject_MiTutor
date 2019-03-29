@@ -5,4 +5,11 @@
 
     <dimen name="margin">5dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="login_title">40sp</dimen>
+    <dimen name="padd">15dp</dimen>
+    <dimen name="line">2dp</dimen>
+    <dimen name="subtitle">20sp</dimen>
+    <dimen name="view_title">25dp</dimen>
+    <dimen name="space_size">80dp</dimen>
 </resources>
