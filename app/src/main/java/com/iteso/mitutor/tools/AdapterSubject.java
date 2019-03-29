@@ -25,8 +25,8 @@ public class AdapterSubject extends RecyclerView.Adapter<AdapterSubject.ViewHold
     private ArrayList<Subject> subjectDataSet;
     private Context context;
     // Provide a suitable constructor (depends on the kind of dataset)
-    public AdapterSubject(Context context, ArrayList<Subject> myDataSet) {
-        subjectDataSet = myDataSet;
+    public AdapterSubject(Context context, ArrayList<Subject> subjectDataSet) {
+        this.subjectDataSet = subjectDataSet;
         this.context = context;
     }
     // Create new views (invoked by the layout manager)
@@ -54,9 +54,9 @@ public class AdapterSubject extends RecyclerView.Adapter<AdapterSubject.ViewHold
             context = v.getContext();
             mCardView = (CardView) v.findViewById(R.id.card_view);
             mEventLayout = (RelativeLayout) v.findViewById(R.id.item_subject_layout);
-            mDetail = (Button) v.findViewById(R.id.item_product_detail);
+//            mDetail = (Button) v.findViewById(R.id.item_product_detail);
             subjectTitle = (TextView) v.findViewById(R.id.item_subject_title);
-            subjectTutor = (TextView) v.findViewById(R.id.item_subject_location);
+            subjectTutor = (TextView) v.findViewById(R.id.item_subject_tutor);
             subjectLocation = (TextView) v.findViewById(R.id.item_subject_location);
             subjectPhone = (TextView) v.findViewById(R.id.item_product_phone);
             subjectThumbnail = (ImageView) v.findViewById(R.id.item_subject_thumbnail);
@@ -68,7 +68,7 @@ public class AdapterSubject extends RecyclerView.Adapter<AdapterSubject.ViewHold
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.subjectTitle.setText(subjectDataSet.get(position).getSubjectName());
         holder.subjectTutor.setText(subjectDataSet.get(position).getTutorName());
-        holder.subjectLocation.setText(subjectDataSet.get(position).getTutionLocation());
+        holder.subjectLocation.setText(subjectDataSet.get(position).getTuitionLocation());
         holder.subjectPhone.setText(subjectDataSet.get(position).getTutorPhone());
         switch(subjectDataSet.get(position).getSubjectImageUrl()){
             case "":
@@ -78,18 +78,18 @@ public class AdapterSubject extends RecyclerView.Adapter<AdapterSubject.ViewHold
             case "1":
                 holder.subjectThumbnail.setImageResource(R.drawable.ic_launcher_background); break;
         }
-        holder.mDetail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, subjectDataSet.get(position).toString(),
-                        Toast.LENGTH_LONG).show();
-            }
-        });
+//        holder.mDetail.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(context, subjectDataSet.get(position).toString(),
+//                        Toast.LENGTH_LONG).show();
+//            }
+//        });
         holder.mEventLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ActivitySubject.class);
-                intent.putExtra(Constants.SUBJECT, subjectDataSet.get(position));
+                intent.putExtra(Constants.SUBJECT,subjectDataSet.get(position));
                 int id = subjectDataSet.get(position).getId();
                 ((ActivityMain) context).startActivityForResult(intent, id);
             }

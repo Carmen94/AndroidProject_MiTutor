@@ -7,6 +7,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.TextView;
 
 import com.iteso.mitutor.beans.Subject;
 import com.iteso.mitutor.tools.AdapterSubject;
@@ -17,9 +20,9 @@ public class ActivityMain extends AppCompatActivity {
     private ArrayList<Subject> mathSubjects;
     private ArrayList<Subject> algebraSubjects;
     private RecyclerView.Adapter subjectAdapter;
-    private RecyclerView.LayoutManager layoutManager;
     RecyclerView mathRecyclerView;
     RecyclerView algebraRecyclerView;
+    TextView mathMore, statisticsMore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +31,31 @@ public class ActivityMain extends AppCompatActivity {
         mathSubjects = new ArrayList<>();
         algebraSubjects = new ArrayList<>();
         mathRecyclerView = (RecyclerView) findViewById(R.id.math_recycler_view);
-        algebraRecyclerView = (RecyclerView) findViewById(R.id.english_recycler_view);
+        algebraRecyclerView = (RecyclerView) findViewById(R.id.statistics_recycler_view);
+        mathMore = findViewById(R.id.math_more);
+        statisticsMore = findViewById(R.id.statistics_more);
+
+        mathMore.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Intent intent = new Intent(ActivityMain.this,ActivitySubject.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+                return false;
+            }
+        });
+
+        statisticsMore.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Intent intent = new Intent(ActivityMain.this,ActivitySubject.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+                return false;
+            }
+        });
         // Initialize contacts
         Subject subject = new Subject();
         subject.setSubjectName("Math");
@@ -45,10 +72,27 @@ public class ActivityMain extends AppCompatActivity {
         subject2.setSubjectCode("2D");
         subject2.setSubjectImageUrl("URL");
         subject2.setTuitionLocation("ITESO");
+
+        Subject subject3 = new Subject();
+        subject3.setSubjectName("Statistics");
+        subject3.setTutorName("Michelle");
+        subject3.setId(0);
+        subject3.setSubjectCode("2D");
+        subject3.setSubjectImageUrl("URL");
+        subject3.setTuitionLocation("ITESO");
+
+        Subject subject4 = new Subject();
+        subject4.setSubjectName("Statistics II");
+        subject4.setTutorName("John");
+        subject4.setId(0);
+        subject4.setSubjectCode("2D");
+        subject4.setSubjectImageUrl("URL");
+        subject4.setTuitionLocation("ITESO");
+
         mathSubjects.add(subject);
         mathSubjects.add(subject2);
-        algebraSubjects.add(subject);
-        algebraSubjects.add(subject2);
+        algebraSubjects.add(subject3);
+        algebraSubjects.add(subject4);
         // Create adapter passing in the sample user data
         subjectAdapter = new AdapterSubject(this,mathSubjects);
         mathRecyclerView.setAdapter(subjectAdapter);

@@ -3,6 +3,13 @@
     <string name="app_name">Mi Tutor</string>
     <string name="welcome">Bienvenido!!</string>
     <string name="view_more">Ver más...</string>
+    <string name="tutors">Tutores</string>
+    <string name="type_message">Escribe tu mensaje...</string>
+    <string name="schedule_session">Agendar tutoría</string>
+    <string name="score">Calificación</string>
+    <string name="description">Descripción</string>
+    <string name="location">Ubicación</string>
+    <string name="phone">Teléfono</string>
 
     <string name="menu_profile">Perfil</string>
     <string name="menu_chat">Mensajes</string>

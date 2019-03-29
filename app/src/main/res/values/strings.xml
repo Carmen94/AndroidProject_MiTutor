@@ -2,7 +2,13 @@
     <string name="app_name">My Tutor</string>
     <string name="welcome">Welcome!!</string>
     <string name="view_more">View more...</string>
-
+    <string name="type_message">Type your message...</string>
+    <string name="tutors">Tutors</string>
+    <string name="schedule_session">Schedule session</string>
+    <string name="score">Score</string>
+    <string name="description">Description</string>
+    <string name="location">Location</string>
+    <string name="phone">Phone</string>
 
     <string name="menu_profile">Profile</string>
     <string name="menu_chat">Chat</string>
