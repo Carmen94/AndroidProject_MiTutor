@@ -66,6 +66,12 @@ public class ActivityAllSubjects extends AppCompatActivity {
         recyclerView.setAdapter(subjectAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -87,7 +93,6 @@ public class ActivityAllSubjects extends AppCompatActivity {
             logOut();
             return true;
         } else if (id == R.id.action_profile){
-            //Open Profile
             openProfile();
             return true;
         } else if(id == R.id.action_main){
@@ -99,7 +104,7 @@ public class ActivityAllSubjects extends AppCompatActivity {
     }
 
     private void openChat(){
-        Intent intent = new Intent(ActivityAllSubjects.this,ActivityChat.class);
+        Intent intent = new Intent(ActivityAllSubjects.this,ActivityAllChats.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();

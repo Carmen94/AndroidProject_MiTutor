@@ -14,6 +14,10 @@ public class ActivityChat extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -47,28 +51,24 @@ public class ActivityChat extends AppCompatActivity {
 
     private void openMain(){
         Intent intent = new Intent(ActivityChat.this,ActivityMain.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        finish();
+//        finish();
     }
 
     private void logOut(){
         Intent intent = new Intent(ActivityChat.this,ActivityLogin.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        finish();
+//        finish();
     }
     private void openProfile(){
         Intent intent = new Intent(ActivityChat.this,ActivityProfile.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        finish();
+//        finish();
     }
     private void openSearch(){
         Intent intent = new Intent(ActivityChat.this,ActivitySearch.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        finish();
+//        finish();
     }
 
 }

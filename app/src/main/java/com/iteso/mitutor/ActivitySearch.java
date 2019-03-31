@@ -41,7 +41,7 @@ public class ActivitySearch extends AppCompatActivity {
     }
 
     private void openChat(){
-        Intent intent = new Intent(ActivitySearch.this,ActivityChat.class);
+        Intent intent = new Intent(ActivitySearch.this,ActivityAllChats.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();

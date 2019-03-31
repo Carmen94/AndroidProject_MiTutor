@@ -11,11 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActivityAllSubjects"></activity>
+        <activity android:name=".ActivityAllChats"></activity>
+        <activity android:name=".ActivityAllSubjects" />
         <activity android:name=".ActivitySignup" />
         <activity android:name=".ActivitySearch" />
         <activity android:name=".ActivityProfile" />
-        <activity android:name=".ActivityMain"/>
+        <activity android:name=".ActivityMain" />
         <activity android:name=".ActivityChat" />
         <activity android:name=".ActivitySubject" />
         <activity android:name=".ActivityLogin">

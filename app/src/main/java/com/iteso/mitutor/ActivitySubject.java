@@ -29,7 +29,7 @@ public class ActivitySubject extends AppCompatActivity {
 
         Subject subject = new Subject();
         subject.setSubjectName("Math");
-        subject.setTutorName("Patrick");
+        subject.setTutorName("Juan López");
         subject.setId(0);
         subject.setSubjectCode("2D");
         subject.setSubjectImageUrl("URL");
@@ -40,7 +40,7 @@ public class ActivitySubject extends AppCompatActivity {
 
         Subject subject2 = new Subject();
         subject2.setSubjectName("Math II");
-        subject2.setTutorName("Patrick");
+        subject2.setTutorName("Juan González");
         subject2.setId(0);
         subject2.setSubjectCode("2D");
         subject2.setSubjectImageUrl("URL");
@@ -49,11 +49,27 @@ public class ActivitySubject extends AppCompatActivity {
         subject2.setScore("8/10");
         subject2.setTutorDescription("Students of engineering");
 
+        Subject subject3 = new Subject();
+        subject3.setSubjectName("Math II");
+        subject3.setTutorName("Martha Pérez");
+        subject3.setId(0);
+        subject3.setSubjectCode("2D");
+        subject3.setSubjectImageUrl("URL");
+        subject3.setTuitionLocation("ITESO");
+        subject3.setTutorPhone("33647898");
+        subject3.setScore("9/10");
+        subject3.setTutorDescription("Student of finance");
+
         listOfSubjects.add(subject);
         listOfSubjects.add(subject2);
         subjectAdapter = new AdapterSubjectDetail(this,listOfSubjects);
         subjectRecyclerView.setAdapter(subjectAdapter);
         subjectRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     @Override
@@ -77,7 +93,6 @@ public class ActivitySubject extends AppCompatActivity {
             logOut();
             return true;
         } else if (id == R.id.action_profile){
-            //Open Profile
             openProfile();
             return true;
         } else if(id == R.id.action_main){
@@ -89,34 +104,29 @@ public class ActivitySubject extends AppCompatActivity {
     }
 
     private void openChat(){
-        Intent intent = new Intent(ActivitySubject.this,ActivityChat.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
+        Intent intent = new Intent(ActivitySubject.this,ActivityAllChats.class);
         startActivity(intent);
         finish();
     }
 
     private void logOut(){
         Intent intent = new Intent(ActivitySubject.this,ActivityLogin.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
     }
 
     private void openMain(){
         Intent intent = new Intent(ActivitySubject.this,ActivityMain.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
     }
     private void openSearch(){
         Intent intent = new Intent(ActivitySubject.this,ActivitySearch.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
     }
     private void openProfile(){
         Intent intent = new Intent(ActivitySubject.this,ActivityProfile.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
     }

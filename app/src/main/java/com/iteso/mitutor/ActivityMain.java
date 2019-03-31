@@ -134,7 +134,7 @@ public class ActivityMain extends AppCompatActivity {
     }
 
     private void openChat(){
-        Intent intent = new Intent(ActivityMain.this,ActivityChat.class);
+        Intent intent = new Intent(ActivityMain.this,ActivityAllChats.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();

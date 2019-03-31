@@ -3,8 +3,10 @@
     <dimen name="title">30sp</dimen>
     <dimen name="banner_size">60sp</dimen>
     <dimen name="highlight_size">25sp</dimen>
+    <dimen name="layout_weight_icon">.2</dimen>
 
     <dimen name="margin">5dp</dimen>
+    <dimen name="icon_margin">10dp</dimen>
     <dimen name="margin_bottom">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="icon_size">50dp</dimen>
