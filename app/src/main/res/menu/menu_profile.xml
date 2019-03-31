@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/action_profile"
-        android:title="@string/menu_profile" />
+    <item android:id="@+id/action_main"
+        android:title="@string/menu_main"    />
     <item android:id="@+id/action_chat"
-        android:icon="@drawable/ic_launcher_background"
-        android:title="@string/menu_chat"
-       />
+        android:title="@string/menu_chat" />
     <item android:id="@+id/action_search"
         android:icon="@drawable/ic_launcher_background"
         android:title="@string/menu_search"
         />
     <item android:id="@+id/action_logout"
-        android:icon="@drawable/ic_launcher_background"
         android:title="@string/menu_logout"
         />
 </menu>

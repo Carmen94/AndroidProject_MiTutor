@@ -35,27 +35,26 @@ public class ActivityMain extends AppCompatActivity {
         mathMore = findViewById(R.id.math_more);
         statisticsMore = findViewById(R.id.statistics_more);
 
-        mathMore.setOnTouchListener(new View.OnTouchListener() {
+        mathMore.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                Intent intent = new Intent(ActivityMain.this,ActivitySubject.class);
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityMain.this,ActivityAllSubjects.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
-                return false;
             }
         });
 
-        statisticsMore.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                Intent intent = new Intent(ActivityMain.this,ActivitySubject.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
-                return false;
-            }
+       statisticsMore.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent = new Intent(ActivityMain.this,ActivityAllSubjects.class);
+               intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
+               startActivity(intent);
+               finish();
+           }
         });
+
         // Initialize contacts
         Subject subject = new Subject();
         subject.setSubjectName("Math");
@@ -125,7 +124,11 @@ public class ActivityMain extends AppCompatActivity {
             logOut();
             return true;
         } else if (id == R.id.action_profile){
-            //Open Profile
+            openProfile();
+            return true;
+        } else if(id == R.id.action_search){
+            openSearch();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -138,7 +141,22 @@ public class ActivityMain extends AppCompatActivity {
     }
 
     private void logOut(){
-
+        Intent intent = new Intent(ActivityMain.this,ActivityLogin.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+    }
+    private void openProfile(){
+        Intent intent = new Intent(ActivityMain.this,ActivityProfile.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+    }
+    private void openSearch(){
+        Intent intent = new Intent(ActivityMain.this,ActivitySearch.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
     }
 
 }

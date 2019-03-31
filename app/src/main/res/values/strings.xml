@@ -14,6 +14,45 @@
     <string name="menu_chat">Chat</string>
     <string name="menu_logout">Logout</string>
     <string name="menu_main">Main</string>
+    <string name="menu_search">Search</string>
 
+
+    <string name="login_mail">Email</string>
+    <string name="login_pass">Password</string>
+    <string name="login_button">Login</string>
+    <string name="login_account">Dont have account?</string>
+    <string name="login_signup"><u>Sign Up!</u></string>
+
+    <string name="profile">Profile</string>
+    <string name="user_name">Andrea Rayon Mora</string>
+    <string name="user_mail"><i>is705113@iteso.mx</i></string>
+    <string name="tutorship_tag">My Tutorships</string>
+
+    <string name="search_tag">Search</string>
+    <string name="search_hint">Search</string>
+    <string name="recent_tag">Recent Searches</string>
+
+    <string-array name="subjects">
+        <item>Calculus</item>
+        <item>OOP</item>
+        <item>C++</item>
+        <item>IoT</item>
+    </string-array>
+
+    <string name="signup_tag">Sign Up</string>
+    <string name="signup_name">Name</string>
+    <string name="signup_lastname">Last Name</string>
+    <string name="signup_bd">Birthday</string>
+    <string name="signup_email">Email</string>
+    <string name="signup_scholarship">Scholarship</string>
+    <string name="signup_password">Password</string>
+
+    <string-array name="scholarship">
+        <item>Scholarship</item>
+        <item>High School</item>
+        <item>Bachelor</item>
+    </string-array>
+
+    <string name="subject">Math</string>
 </resources>
 

@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ActivityMain"
-    >
+    tools:context=".ActivityAllSubjects"
+    android:orientation="vertical">
+
     <TextView
+        android:id="@+id/signup_tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tutors"
-        android:layout_gravity="left"
-        android:textSize="@dimen/title"
-        android:fontFamily="sans-serif-condensed"
-        android:textColor="@color/colorPrimaryDark"
+        android:text="@string/subject"
+        android:layout_margin="@dimen/margin"
+        android:textSize="@dimen/view_title"
+        android:layout_gravity="center"
+        android:textStyle="bold"
         />
-
     <android.support.v7.widget.RecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/subject_category_recycler_view"
+        android:id="@+id/all_subjects_recycler_view"
         android:scrollbars="horizontal"
         android:orientation="horizontal"
         xmlns:tools="http://schemas.android.com/tools"
-        tools:listitem="@layout/item_subject_detail"
+        tools:listitem="@layout/item_light_subject"
+        android:layout_margin="@dimen/padd"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:scrollbarStyle="outsideOverlay"

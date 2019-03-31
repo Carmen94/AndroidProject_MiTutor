@@ -99,7 +99,8 @@ public class Subject implements Parcelable {
         this.id = in.readInt();
     }
 
-    public Subject(){};
+    public Subject(){}
+
 
     @Override
     public int describeContents() {

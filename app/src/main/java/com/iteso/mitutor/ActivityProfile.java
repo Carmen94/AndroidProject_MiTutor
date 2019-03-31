@@ -6,69 +6,63 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class ActivityChat extends AppCompatActivity {
+public class ActivityProfile extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
+        setContentView(R.layout.activity_profile);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu_main; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_chat, menu);
-        return true;
+        getMenuInflater().inflate(R.menu.menu_profile, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_profile) {
-            openProfile();
+        if (id == R.id.action_chat) {
+            openChat();
             return true;
         } else if (id == R.id.action_logout){
             logOut();
             return true;
+        } else if (id == R.id.action_search){
+            openSearch();
+            return true;
         } else if(id == R.id.action_main){
             openMain();
-            return true;
-        }else if(id == R.id.action_search){
-            openSearch();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void openMain(){
-        Intent intent = new Intent(ActivityChat.this,ActivityMain.class);
+    private void openChat(){
+        Intent intent = new Intent(ActivityProfile.this,ActivityChat.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
     }
 
     private void logOut(){
-        Intent intent = new Intent(ActivityChat.this,ActivityLogin.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        finish();
-    }
-    private void openProfile(){
-        Intent intent = new Intent(ActivityChat.this,ActivityProfile.class);
+        Intent intent = new Intent(ActivityProfile.this,ActivityLogin.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
     }
     private void openSearch(){
-        Intent intent = new Intent(ActivityChat.this,ActivitySearch.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
+        Intent intent = new Intent(ActivityProfile.this,ActivitySearch.class);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
     }
-
+    private void openMain(){
+        Intent intent = new Intent(ActivityProfile.this,ActivityMain.class);
+        // intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+    }
 }

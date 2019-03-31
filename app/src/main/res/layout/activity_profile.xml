@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/margin"
+    tools:context=".ActivityProfile">
+
+    <TextView
+        android:id="@+id/profile_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/profile"
+        android:textSize="@dimen/view_title"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        />
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/title"
+        android:background="@drawable/circle"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/profile_tag"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_marginTop="@dimen/login_title"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_below="@id/profile_tag"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/monkeylaptop" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user_name"
+        android:layout_below="@id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/login_title"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/subtitle"/>
+
+    <TextView
+        android:id="@+id/user_mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_name"
+        android:text="@string/user_mail"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin"
+        android:textColor="@color/colorGreen"/>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="fill_parent"
+        android:layout_marginHorizontal="@dimen/banner_size"
+        android:layout_height="@dimen/line"
+        android:layout_marginTop="@dimen/margin"
+        android:background="@color/colorLightGray"
+        android:layout_below="@id/user_mail"/>
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tutorship_tag"
+        android:layout_below="@id/line"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/padd"
+        android:textSize="@dimen/subtitle"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"/>
+</RelativeLayout>
