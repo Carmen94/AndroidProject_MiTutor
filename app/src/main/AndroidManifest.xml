@@ -13,13 +13,13 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ActivityAllChats"></activity>
         <activity android:name=".ActivityAllSubjects" />
-        <activity android:name=".ActivitySignup" />
-        <activity android:name=".ActivitySearch" />
-        <activity android:name=".ActivityProfile" />
-        <activity android:name=".ActivityMain" />
+        <activity android:name=".ActivitySignup" android:screenOrientation="portrait"  />
+        <activity android:name=".ActivitySearch" android:screenOrientation="portrait" />
+        <activity android:name=".ActivityProfile" android:screenOrientation="portrait"  />
+        <activity android:name=".ActivityMain" android:screenOrientation="portrait"  />
         <activity android:name=".ActivityChat" />
         <activity android:name=".ActivitySubject" />
-        <activity android:name=".ActivityLogin">
+        <activity android:name=".ActivityLogin" android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

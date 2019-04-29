@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.FirebaseApp;
 import com.iteso.mitutor.beans.Subject;
 import com.iteso.mitutor.tools.AdapterSubject;
 
@@ -28,6 +29,7 @@ public class ActivityMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //FirebaseApp.initializeApp(this);
         mathSubjects = new ArrayList<>();
         algebraSubjects = new ArrayList<>();
         mathRecyclerView = (RecyclerView) findViewById(R.id.math_recycler_view);
