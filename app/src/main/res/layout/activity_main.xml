@@ -10,14 +10,6 @@
     android:orientation="vertical"
     tools:context=".ActivityMain"
     >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/welcome"
-        android:layout_gravity="center"
-        android:textSize="@dimen/title"
-        android:fontFamily="sans-serif-condensed"
-       />
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="300dp"
