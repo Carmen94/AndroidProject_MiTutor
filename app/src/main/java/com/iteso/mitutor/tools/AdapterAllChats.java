@@ -15,17 +15,17 @@ import android.widget.TextView;
 import com.iteso.mitutor.ActivityAllChats;
 import com.iteso.mitutor.ActivityChat;
 import com.iteso.mitutor.R;
-import com.iteso.mitutor.beans.Message;
+import com.iteso.mitutor.beans.Chat;
 
 import java.util.ArrayList;
 
 public class AdapterAllChats extends RecyclerView.Adapter<AdapterAllChats.ViewHolder> {
-    private ArrayList<Message> messageDataSet;
+    private ArrayList<Chat> chatsDataSet;
     private Context context;
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public AdapterAllChats(Context context, ArrayList<Message> chatsDataSet) {
-        this.messageDataSet = chatsDataSet;
+    public AdapterAllChats(Context context, ArrayList<Chat> chatsDataSet) {
+        this.chatsDataSet = chatsDataSet;
         this.context = context;
     }
     // Create new views (invoked by the layout manager)
@@ -57,36 +57,20 @@ public class AdapterAllChats extends RecyclerView.Adapter<AdapterAllChats.ViewHo
 
     @Override
     public void onBindViewHolder(final AdapterAllChats.ViewHolder holder, final int position) {
-        holder.messageSender.setText(messageDataSet.get(position).getAuthor());
- /*       switch(subjectDataSet.get(position).getSubjectImageUrl()){
-            case "":
-                holder.subjectThumbnail.setImageResource(R.drawable.ic_launcher_background); break;
-            case "0":
-                holder.subjectThumbnail.setImageResource(R.drawable.ic_launcher_background); break;
-            case "1":
-                holder.subjectThumbnail.setImageResource(R.drawable.ic_launcher_background); break;
-        }*/
-//        holder.mDetail.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(context, subjectDataSet.get(position).toString(),
-//                        Toast.LENGTH_LONG).show();
-//            }
-//        });
+        holder.messageSender.setText(chatsDataSet.get(position).getTutor().getFirstName()+" "+chatsDataSet.get(position).getTutor().getLastName());
         holder.mEventLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ActivityChat.class);
-                intent.putExtra(Constants.CHAT,messageDataSet.get(position));
-                int id = messageDataSet.get(position).getChatID();
-                ((ActivityAllChats) context).startActivityForResult(intent, id);
+                intent.putExtra(Constants.CHAT,chatsDataSet.get(position));
+                ((ActivityAllChats) context).startActivity(intent);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return messageDataSet.size();
+        return chatsDataSet.size();
     }
 
 }

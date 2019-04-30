@@ -59,28 +59,12 @@ public class AdapterAllSubjects extends RecyclerView.Adapter<AdapterAllSubjects.
     @Override
     public void onBindViewHolder(final AdapterAllSubjects.ViewHolder holder, final int position) {
         holder.subjectName.setText(subjectDataSet.get(position).getSubjectName());
- /*       switch(subjectDataSet.get(position).getSubjectImageUrl()){
-            case "":
-                holder.subjectThumbnail.setImageResource(R.drawable.ic_launcher_background); break;
-            case "0":
-                holder.subjectThumbnail.setImageResource(R.drawable.ic_launcher_background); break;
-            case "1":
-                holder.subjectThumbnail.setImageResource(R.drawable.ic_launcher_background); break;
-        }*/
-//        holder.mDetail.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(context, subjectDataSet.get(position).toString(),
-//                        Toast.LENGTH_LONG).show();
-//            }
-//        });
         holder.mEventLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ActivitySubject.class);
-               intent.putExtra(Constants.SUBJECT,subjectDataSet.get(position));
-                int id = subjectDataSet.get(position).getId();
-                ((ActivityAllSubjects) context).startActivityForResult(intent, id);
+                intent.putExtra(Constants.SUBJECT,subjectDataSet.get(position));
+                context.startActivity(intent);
             }
         });
     }

@@ -3,6 +3,9 @@ package com.iteso.mitutor.tools;
 public class Constants {
 
     public final static String SUBJECT = "SUBJECT";
+    public final static String TUTORING = "TUTORING";
+    public final static String DB_TUTORING = "tutorings";
+
 
     public final static String CHAT = "CHAT";
 

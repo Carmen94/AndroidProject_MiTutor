@@ -19,16 +19,17 @@ import com.iteso.mitutor.ActivityMain;
 import com.iteso.mitutor.ActivitySubject;
 import com.iteso.mitutor.R;
 import com.iteso.mitutor.beans.Subject;
+import com.iteso.mitutor.beans.Tutoring;
 
 
 import java.util.ArrayList;
 
 public class AdapterSubjectDetail extends RecyclerView.Adapter<AdapterSubjectDetail.ViewHolder> {
-    private ArrayList<Subject> subjectDataSet;
+    private ArrayList<Tutoring> tutorings;
     private Context context;
     // Provide a suitable constructor (depends on the kind of dataset)
-    public AdapterSubjectDetail(Context context, ArrayList<Subject> subjectDataSet) {
-        this.subjectDataSet = subjectDataSet;
+    public AdapterSubjectDetail(Context context, ArrayList<Tutoring> tutorings) {
+        this.tutorings = tutorings;
         this.context = context;
     }
     // Create new views (invoked by the layout manager)
@@ -82,32 +83,32 @@ public class AdapterSubjectDetail extends RecyclerView.Adapter<AdapterSubjectDet
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.subjectScore.setText(subjectDataSet.get(position).getScore());
-        holder.subjectTutor.setText(subjectDataSet.get(position).getTutorName());
-        holder.subjectLocation.setText(subjectDataSet.get(position).getTuitionLocation());
-        holder.subjectPhone.setText(subjectDataSet.get(position).getTutorPhone());
-        holder.subjectDescription.setText(subjectDataSet.get(position).getTutorDescription());
-        switch(subjectDataSet.get(position).getSubjectImageUrl()){
-            case "":
+        holder.subjectScore.setText(tutorings.get(position).getScore()+"");
+        holder.subjectTutor.setText(tutorings.get(position).getTutor().getFirstName());
+        holder.subjectLocation.setText(tutorings.get(position).getLocation());
+        holder.subjectPhone.setText(tutorings.get(position).getTutor().getPhone());
+        holder.subjectDescription.setText(tutorings.get(position).getDescription());
+        switch(tutorings.get(position).getImage()){
+            case 0:
                 holder.subjectThumbnail.setImageResource(R.drawable.ic_launcher_background); break;
-            case "0":
+            case 1:
                 holder.subjectThumbnail.setImageResource(R.drawable.ic_launcher_background); break;
-            case "1":
+            case 2:
                 holder.subjectThumbnail.setImageResource(R.drawable.ic_launcher_background); break;
         }//
         holder.mEventLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ActivitySubject.class);
-                intent.putExtra(Constants.SUBJECT,subjectDataSet.get(position));
-                int id = subjectDataSet.get(position).getId();
-                ((ActivitySubject) context).startActivityForResult(intent, id);
+                intent.putExtra(Constants.SUBJECT,tutorings.get(position));
+                ((ActivitySubject) context).startActivity(intent);
             }
         });
         holder.schedule_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context,ActivityChat.class);
+                intent.putExtra(Constants.TUTORING,tutorings.get(position));
                 context.startActivity(intent);
             }
         });
@@ -115,7 +116,7 @@ public class AdapterSubjectDetail extends RecyclerView.Adapter<AdapterSubjectDet
 
     @Override
     public int getItemCount() {
-        return subjectDataSet.size();
+        return tutorings.size();
     }
 
 }

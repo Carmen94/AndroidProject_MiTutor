@@ -11,27 +11,26 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.iteso.mitutor.ActivityMain;
 import com.iteso.mitutor.ActivitySubject;
 import com.iteso.mitutor.R;
-import com.iteso.mitutor.beans.Subject;
+import com.iteso.mitutor.beans.Tutoring;
 
 
 import java.util.ArrayList;
 
-public class AdapterSubject extends RecyclerView.Adapter<AdapterSubject.ViewHolder> {
-    private ArrayList<Subject> subjectDataSet;
+public class AdapterTutorings extends RecyclerView.Adapter<AdapterTutorings.ViewHolder> {
+    private ArrayList<Tutoring> tutoringsDataSet;
     private Context context;
     // Provide a suitable constructor (depends on the kind of dataset)
-    public AdapterSubject(Context context, ArrayList<Subject> subjectDataSet) {
-        this.subjectDataSet = subjectDataSet;
+    public AdapterTutorings(Context context, ArrayList<Tutoring> tutoringsDataSet) {
+        this.tutoringsDataSet = tutoringsDataSet;
         this.context = context;
     }
     // Create new views (invoked by the layout manager)
     @Override
-    public AdapterSubject.ViewHolder onCreateViewHolder(ViewGroup parent,int viewType) {
+    public AdapterTutorings.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_subject, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
@@ -41,7 +40,7 @@ public class AdapterSubject extends RecyclerView.Adapter<AdapterSubject.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public Button mDetail;
         public CardView mCardView;
-        public TextView subjectTitle;
+        public TextView tutoringTitle;
         public TextView subjectTutor;
         public TextView subjectLocation;
         public TextView subjectPhone;
@@ -54,8 +53,7 @@ public class AdapterSubject extends RecyclerView.Adapter<AdapterSubject.ViewHold
             context = v.getContext();
             mCardView = (CardView) v.findViewById(R.id.card_view);
             mEventLayout = (RelativeLayout) v.findViewById(R.id.item_subject_layout);
-//            mDetail = (Button) v.findViewById(R.id.item_product_detail);
-            subjectTitle = (TextView) v.findViewById(R.id.item_subject_title);
+            tutoringTitle = (TextView) v.findViewById(R.id.item_subject_title);
             subjectTutor = (TextView) v.findViewById(R.id.item_subject_tutor);
             subjectLocation = (TextView) v.findViewById(R.id.item_subject_location);
             subjectPhone = (TextView) v.findViewById(R.id.item_product_phone);
@@ -66,39 +64,31 @@ public class AdapterSubject extends RecyclerView.Adapter<AdapterSubject.ViewHold
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.subjectTitle.setText(subjectDataSet.get(position).getSubjectName());
-        holder.subjectTutor.setText(subjectDataSet.get(position).getTutorName());
-        holder.subjectLocation.setText(subjectDataSet.get(position).getTuitionLocation());
-        holder.subjectPhone.setText(subjectDataSet.get(position).getTutorPhone());
-        switch(subjectDataSet.get(position).getSubjectImageUrl()){
-            case "":
+        holder.tutoringTitle.setText(tutoringsDataSet.get(position).getDescription());
+        holder.subjectTutor.setText(tutoringsDataSet.get(position).getTutor().getFirstName());
+        holder.subjectLocation.setText(tutoringsDataSet.get(position).getLocation());
+        holder.subjectPhone.setText(tutoringsDataSet.get(position).getTutor().getPhone());
+        switch(tutoringsDataSet.get(position).getImage()){
+            case 0:
                 holder.subjectThumbnail.setImageResource(R.drawable.ic_launcher_background); break;
-            case "0":
+            case 1:
                 holder.subjectThumbnail.setImageResource(R.drawable.ic_launcher_background); break;
-            case "1":
+            case 2:
                 holder.subjectThumbnail.setImageResource(R.drawable.ic_launcher_background); break;
-        }
-//        holder.mDetail.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(context, subjectDataSet.get(position).toString(),
-//                        Toast.LENGTH_LONG).show();
-//            }
-//        });
+        }//
         holder.mEventLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ActivitySubject.class);
-                intent.putExtra(Constants.SUBJECT,subjectDataSet.get(position));
-                int id = subjectDataSet.get(position).getId();
-                ((ActivityMain) context).startActivityForResult(intent, id);
+                intent.putExtra(Constants.SUBJECT,tutoringsDataSet.get(position).getSubject());
+                ((ActivityMain) context).startActivity(intent);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return subjectDataSet.size();
+        return tutoringsDataSet.size();
     }
 
 }

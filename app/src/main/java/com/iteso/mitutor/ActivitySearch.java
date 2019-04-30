@@ -42,27 +42,27 @@ public class ActivitySearch extends AppCompatActivity {
 
     private void openChat(){
         Intent intent = new Intent(ActivitySearch.this,ActivityAllChats.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
     }
 
     private void logOut(){
         Intent intent = new Intent(ActivitySearch.this,ActivityLogin.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
+       // intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        finish();
+        //finish();
     }
     private void openProfile(){
         Intent intent = new Intent(ActivitySearch.this,ActivityProfile.class);
         //intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        finish();
+        //finish();
     }
     private void openMain(){
         Intent intent = new Intent(ActivitySearch.this,ActivityMain.class);
         // intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        finish();
+        //finish();
     }
 }

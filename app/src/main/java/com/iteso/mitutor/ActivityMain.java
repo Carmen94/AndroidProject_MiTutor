@@ -1,25 +1,34 @@
 package com.iteso.mitutor;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.iteso.mitutor.beans.Subject;
-import com.iteso.mitutor.tools.AdapterSubject;
+import com.iteso.mitutor.beans.Tutoring;
+import com.iteso.mitutor.tools.AdapterTutorings;
 
 import java.util.ArrayList;
 
 public class ActivityMain extends AppCompatActivity {
-    private ArrayList<Subject> mathSubjects;
-    private ArrayList<Subject> algebraSubjects;
+    private ArrayList<Tutoring> mathTutorings;
+    private ArrayList<Tutoring> algebraTutorings;
+    private ArrayList<Subject> listOfSubjects;
     private RecyclerView.Adapter subjectAdapter;
+    DatabaseReference databaseReference;
     RecyclerView mathRecyclerView;
     RecyclerView algebraRecyclerView;
     TextView mathMore, statisticsMore;
@@ -28,8 +37,34 @@ public class ActivityMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mathSubjects = new ArrayList<>();
-        algebraSubjects = new ArrayList<>();
+        mathTutorings = new ArrayList<>();
+        algebraTutorings = new ArrayList<>();
+        listOfSubjects = new ArrayList<>();
+        databaseReference =  FirebaseDatabase.getInstance().getReference();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot : dataSnapshot.child("subjects").getChildren()){
+                    Subject subject = snapshot.getValue(Subject.class);
+                    listOfSubjects.add(subject);
+                }
+                for(DataSnapshot snapshot : dataSnapshot.child("tutorings").getChildren()){
+                    Tutoring tutoring = snapshot.getValue(Tutoring.class);
+                    if(tutoring.getSubject().getSubjectId().equals("2")){
+                        mathTutorings.add(tutoring);
+                    }else if(tutoring.getSubject().getSubjectId().equals("1")){
+                        algebraTutorings.add(tutoring);
+                    }
+                }
+                subjectAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         mathRecyclerView = (RecyclerView) findViewById(R.id.math_recycler_view);
         algebraRecyclerView = (RecyclerView) findViewById(R.id.statistics_recycler_view);
         mathMore = findViewById(R.id.math_more);
@@ -54,48 +89,10 @@ public class ActivityMain extends AppCompatActivity {
                finish();
            }
         });
-
-        // Initialize contacts
-        Subject subject = new Subject();
-        subject.setSubjectName("Math");
-        subject.setTutorName("Patrick");
-        subject.setId(0);
-        subject.setSubjectCode("2D");
-        subject.setSubjectImageUrl("URL");
-        subject.setTuitionLocation("ITESO");
-
-        Subject subject2 = new Subject();
-        subject2.setSubjectName("Math II");
-        subject2.setTutorName("Patrick");
-        subject2.setId(0);
-        subject2.setSubjectCode("2D");
-        subject2.setSubjectImageUrl("URL");
-        subject2.setTuitionLocation("ITESO");
-
-        Subject subject3 = new Subject();
-        subject3.setSubjectName("Statistics");
-        subject3.setTutorName("Michelle");
-        subject3.setId(0);
-        subject3.setSubjectCode("2D");
-        subject3.setSubjectImageUrl("URL");
-        subject3.setTuitionLocation("ITESO");
-
-        Subject subject4 = new Subject();
-        subject4.setSubjectName("Statistics II");
-        subject4.setTutorName("John");
-        subject4.setId(0);
-        subject4.setSubjectCode("2D");
-        subject4.setSubjectImageUrl("URL");
-        subject4.setTuitionLocation("ITESO");
-
-        mathSubjects.add(subject);
-        mathSubjects.add(subject2);
-        algebraSubjects.add(subject3);
-        algebraSubjects.add(subject4);
         // Create adapter passing in the sample user data
-        subjectAdapter = new AdapterSubject(this,mathSubjects);
+        subjectAdapter = new AdapterTutorings(this,mathTutorings);
         mathRecyclerView.setAdapter(subjectAdapter);
-        RecyclerView.Adapter subjectAdapter2 = new AdapterSubject(this,algebraSubjects);
+        RecyclerView.Adapter subjectAdapter2 = new AdapterTutorings(this,algebraTutorings);
         algebraRecyclerView.setAdapter(subjectAdapter2);
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         LinearLayoutManager horizontalLayoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
