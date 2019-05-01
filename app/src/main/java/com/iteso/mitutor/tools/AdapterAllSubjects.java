@@ -41,17 +41,17 @@ public class AdapterAllSubjects extends RecyclerView.Adapter<AdapterAllSubjects.
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public CardView mCardView;
         public TextView subjectName;
-        public TextView subjectImg;
+        public ImageView subjectImg;
         public RelativeLayout mEventLayout;
         public Context context;
 
         public ViewHolder(View v) {
             super(v);
             context = v.getContext();
-            mCardView = (CardView) v.findViewById(R.id.cardview);
-            mEventLayout = (RelativeLayout) v.findViewById(R.id.rl_subjects);
-            subjectName = (TextView) v.findViewById(R.id.subject_name);
-            subjectImg = (TextView) v.findViewById(R.id.subject_img);
+            mCardView = v.findViewById(R.id.cardview);
+            mEventLayout = v.findViewById(R.id.rl_subjects);
+            subjectName = v.findViewById(R.id.subject_name);
+            subjectImg = v.findViewById(R.id.subject_img);
         }
     }
 
@@ -67,6 +67,16 @@ public class AdapterAllSubjects extends RecyclerView.Adapter<AdapterAllSubjects.
                 context.startActivity(intent);
             }
         });
+        switch(subjectDataSet.get(position).getSubjectId()){
+            case "1":
+                holder.subjectImg.setImageResource(R.drawable.graph); break;
+            case "2":
+                holder.subjectImg.setImageResource(R.drawable.calculator); break;
+            case "3":
+                holder.subjectImg.setImageResource(R.drawable.function); break;
+            case "4":
+                holder.subjectImg.setImageResource(R.drawable.data); break;
+        }//
     }
 
     @Override

@@ -69,13 +69,15 @@ public class AdapterTutorings extends RecyclerView.Adapter<AdapterTutorings.View
         holder.subjectLocation.setText(tutoringsDataSet.get(position).getLocation());
         holder.subjectPhone.setText(tutoringsDataSet.get(position).getTutor().getPhone());
         switch(tutoringsDataSet.get(position).getImage()){
-            case 0:
-                holder.subjectThumbnail.setImageResource(R.drawable.ic_launcher_background); break;
             case 1:
-                holder.subjectThumbnail.setImageResource(R.drawable.ic_launcher_background); break;
+                holder.subjectThumbnail.setImageResource(R.drawable.graph); break;
             case 2:
-                holder.subjectThumbnail.setImageResource(R.drawable.ic_launcher_background); break;
-        }//
+                holder.subjectThumbnail.setImageResource(R.drawable.calculator); break;
+            case 3:
+                holder.subjectThumbnail.setImageResource(R.drawable.function); break;
+            case 4:
+                holder.subjectThumbnail.setImageResource(R.drawable.data); break;
+        }
         holder.mEventLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -20,7 +20,6 @@ import com.iteso.mitutor.tools.AdapterSubjectDetail;
 import com.iteso.mitutor.tools.Constants;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class ActivitySubject extends AppCompatActivity {
     private ArrayList<Tutoring> tutorings;
@@ -104,28 +103,29 @@ public class ActivitySubject extends AppCompatActivity {
     private void openChat(){
         Intent intent = new Intent(ActivitySubject.this,ActivityAllChats.class);
         startActivity(intent);
-        //finish();
+        finish();
     }
 
     private void logOut(){
         Intent intent = new Intent(ActivitySubject.this,ActivityLogin.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-        //finish();
+        finish();
     }
 
     private void openMain(){
         Intent intent = new Intent(ActivitySubject.this,ActivityMain.class);
         startActivity(intent);
-        //finish();
+        finish();
     }
     private void openSearch(){
         Intent intent = new Intent(ActivitySubject.this,ActivitySearch.class);
         startActivity(intent);
-        //finish();
+        finish();
     }
     private void openProfile(){
         Intent intent = new Intent(ActivitySubject.this,ActivityProfile.class);
         startActivity(intent);
-        //finish();
+        finish();
     }
 }

@@ -101,6 +101,11 @@ public class ActivityMain extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        finish();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -116,44 +121,44 @@ public class ActivityMain extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_chat) {
             openChat();
-            return true;
+            return false;
         } else if (id == R.id.action_logout){
             logOut();
-            return true;
+            return false;
         } else if (id == R.id.action_profile){
             openProfile();
-            return true;
+            return false;
         } else if(id == R.id.action_search){
             openSearch();
-            return true;
+            return false;
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void openChat(){
         Intent intent = new Intent(ActivityMain.this,ActivityAllChats.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
-        finish();
+        //finish();
     }
 
     private void logOut(){
         Intent intent = new Intent(ActivityMain.this,ActivityLogin.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
     }
     private void openProfile(){
         Intent intent = new Intent(ActivityMain.this,ActivityProfile.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
-        finish();
+        //finish();
     }
     private void openSearch(){
         Intent intent = new Intent(ActivityMain.this,ActivitySearch.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
-        finish();
+        //finish();
     }
 
 }

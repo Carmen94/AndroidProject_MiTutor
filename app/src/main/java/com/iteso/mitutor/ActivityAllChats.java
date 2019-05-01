@@ -86,27 +86,24 @@ public class ActivityAllChats extends AppCompatActivity {
 
     private void logOut(){
         Intent intent = new Intent(ActivityAllChats.this,ActivityLogin.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-        //finish();
+        finish();
     }
 
     private void openMain(){
         Intent intent = new Intent(ActivityAllChats.this,ActivityMain.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        //finish();
+        finish();
     }
     private void openSearch(){
         Intent intent = new Intent(ActivityAllChats.this,ActivitySearch.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        //finish();
+        finish();
     }
     private void openProfile(){
         Intent intent = new Intent(ActivityAllChats.this,ActivityProfile.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        //finish();
+        finish();
     }
 }

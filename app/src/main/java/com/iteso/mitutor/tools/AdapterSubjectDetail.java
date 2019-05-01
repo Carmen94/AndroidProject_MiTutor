@@ -89,13 +89,15 @@ public class AdapterSubjectDetail extends RecyclerView.Adapter<AdapterSubjectDet
         holder.subjectPhone.setText(tutorings.get(position).getTutor().getPhone());
         holder.subjectDescription.setText(tutorings.get(position).getDescription());
         switch(tutorings.get(position).getImage()){
-            case 0:
-                holder.subjectThumbnail.setImageResource(R.drawable.ic_launcher_background); break;
             case 1:
-                holder.subjectThumbnail.setImageResource(R.drawable.ic_launcher_background); break;
+                holder.subjectThumbnail.setImageResource(R.drawable.graph); break;
             case 2:
-                holder.subjectThumbnail.setImageResource(R.drawable.ic_launcher_background); break;
-        }//
+                holder.subjectThumbnail.setImageResource(R.drawable.calculator); break;
+            case 3:
+                holder.subjectThumbnail.setImageResource(R.drawable.function); break;
+            case 4:
+                holder.subjectThumbnail.setImageResource(R.drawable.data); break;
+        }
         holder.mEventLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

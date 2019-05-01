@@ -89,33 +89,29 @@ public class ActivityAllSubjects extends AppCompatActivity {
 
     private void openChat(){
         Intent intent = new Intent(ActivityAllSubjects.this,ActivityAllChats.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
     }
 
     private void logOut(){
         Intent intent = new Intent(ActivityAllSubjects.this,ActivityLogin.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
     }
 
     private void openMain(){
         Intent intent = new Intent(ActivityAllSubjects.this,ActivityMain.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
     }
     private void openSearch(){
         Intent intent = new Intent(ActivityAllSubjects.this,ActivitySearch.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
     }
     private void openProfile(){
         Intent intent = new Intent(ActivityAllSubjects.this,ActivityProfile.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
     }

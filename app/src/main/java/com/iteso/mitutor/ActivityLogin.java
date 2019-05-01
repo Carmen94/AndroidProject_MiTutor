@@ -29,7 +29,7 @@ public class ActivityLogin extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(v.getContext(), mail.getText().toString() + " " + password.getText().toString(), Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(ActivityLogin.this ,ActivityMain.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
             }
@@ -39,7 +39,6 @@ public class ActivityLogin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityLogin.this ,ActivitySignup.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
             }
