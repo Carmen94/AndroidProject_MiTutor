@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseListAdapter;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.iteso.mitutor.beans.Chat;
@@ -130,8 +131,8 @@ public class ActivityChat extends AppCompatActivity {
     }
 
     private void logOut(){
-        Intent intent = new Intent(ActivityChat.this,ActivityLogin.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(ActivityChat.this, ActivitySplash.class);
         startActivity(intent);
         finish();
     }
