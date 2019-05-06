@@ -5,13 +5,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class ActivityProfile extends AppCompatActivity {
-
+    FirebaseAuth auth;
+    FirebaseUser user;
+    TextView username;
+    TextView mail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+        username = findViewById(R.id.user_name);
+        mail = findViewById(R.id.user_mail);
+        username.setText(user.getDisplayName());
+        mail.setText(user.getEmail());
     }
 
     @Override
@@ -47,8 +60,8 @@ public class ActivityProfile extends AppCompatActivity {
     }
 
     private void logOut(){
-        Intent intent = new Intent(ActivityProfile.this,ActivityLogin.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(ActivityProfile.this, ActivitySplash.class);
         startActivity(intent);
         finish();
     }

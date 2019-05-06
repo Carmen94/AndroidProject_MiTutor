@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -85,8 +86,8 @@ public class ActivityAllChats extends AppCompatActivity {
     }
 
     private void logOut(){
-        Intent intent = new Intent(ActivityAllChats.this,ActivityLogin.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(ActivityAllChats.this, ActivitySplash.class);
         startActivity(intent);
         finish();
     }

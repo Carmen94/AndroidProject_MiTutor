@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class ActivitySearch extends AppCompatActivity {
 
     @Override
@@ -47,8 +49,8 @@ public class ActivitySearch extends AppCompatActivity {
     }
 
     private void logOut(){
-        Intent intent = new Intent(ActivitySearch.this,ActivityLogin.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(ActivitySearch.this, ActivitySplash.class);
         startActivity(intent);
         finish();
     }

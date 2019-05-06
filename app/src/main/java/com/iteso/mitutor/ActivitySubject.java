@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -107,12 +108,11 @@ public class ActivitySubject extends AppCompatActivity {
     }
 
     private void logOut(){
-        Intent intent = new Intent(ActivitySubject.this,ActivityLogin.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(ActivitySubject.this, ActivitySplash.class);
         startActivity(intent);
         finish();
     }
-
     private void openMain(){
         Intent intent = new Intent(ActivitySubject.this,ActivityMain.class);
         startActivity(intent);

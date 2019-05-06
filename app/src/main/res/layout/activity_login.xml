@@ -28,59 +28,67 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/monkeylaptop" />
 
-    <EditText
-        android:id="@+id/activity_username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_marginTop="@dimen/padd"
-        android:layout_marginHorizontal="@dimen/margin"
-        android:padding="@dimen/padd"
-        android:background="@drawable/rounded_edittext"
-        android:layout_below="@id/imageView"
-        android:hint="@string/login_mail"
-        android:inputType="text"/>
-    <EditText
-        android:id="@+id/activity_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/padd"
-        android:layout_below="@id/activity_username"
-        android:padding="@dimen/padd"
-        android:layout_marginHorizontal="@dimen/margin"
-        android:background="@drawable/rounded_edittext"
-        android:ems="10"
-        android:hint="@string/login_pass"
-        android:inputType="textPassword"/>
+    <!--<EditText-->
+        <!--android:id="@+id/activity_username"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:ems="10"-->
+        <!--android:layout_marginTop="@dimen/padd"-->
+        <!--android:layout_marginHorizontal="@dimen/margin"-->
+        <!--android:padding="@dimen/padd"-->
+        <!--android:background="@drawable/rounded_edittext"-->
+        <!--android:layout_below="@id/imageView"-->
+        <!--android:hint="@string/login_mail"-->
+        <!--android:inputType="text"/>-->
+    <!--<EditText-->
+        <!--android:id="@+id/activity_password"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="@dimen/padd"-->
+        <!--android:layout_below="@id/activity_username"-->
+        <!--android:padding="@dimen/padd"-->
+        <!--android:layout_marginHorizontal="@dimen/margin"-->
+        <!--android:background="@drawable/rounded_edittext"-->
+        <!--android:ems="10"-->
+        <!--android:hint="@string/login_pass"-->
+        <!--android:inputType="textPassword"/>-->
 
-    <Button
-        android:id="@+id/activity_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/padd"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/activity_password"
-        android:background="@drawable/rounded_button"
-        android:padding="@dimen/padd"
-        style="@style/Widget.AppCompat.Button"
-        android:text="@string/login_button" />
+    <!--<Button-->
+        <!--android:id="@+id/activity_save"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="@dimen/padd"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_below="@id/activity_password"-->
+        <!--android:background="@drawable/rounded_button"-->
+        <!--android:padding="@dimen/padd"-->
+        <!--style="@style/Widget.AppCompat.Button"-->
+        <!--android:text="@string/login_button" />-->
 
-    <TextView
-        android:id="@+id/login_account"
-        android:layout_width="wrap_content"
+    <!--<TextView-->
+        <!--android:id="@+id/login_account"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/login_account"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_below="@id/activity_save"-->
+        <!--/>-->
+    <!--<TextView-->
+        <!--android:id="@+id/login_signup"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/login_signup"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_below="@id/login_account"-->
+        <!--/>-->
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/login_account"
+        android:layout_centerVertical="true"
+        android:paddingTop="@dimen/padd"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/activity_save"
-        />
-    <TextView
-        android:id="@+id/login_signup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/login_signup"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/login_account"
-        />
+        android:layout_below="@id/imageView"/>
 
 
 </RelativeLayout>
