@@ -25,21 +25,21 @@ import com.iteso.mitutor.tools.AdapterTutorings;
 import java.util.ArrayList;
 
 public class ActivityMain extends AppCompatActivity {
-    private ArrayList<Tutoring> mathTutorings;
-    private ArrayList<Tutoring> algebraTutorings;
+    private ArrayList<Tutoring> mathTutorings,statisticsTutoring,calculusTutorings,cTutorings;
     private ArrayList<Subject> listOfSubjects;
-    private RecyclerView.Adapter subjectAdapter;
+    private RecyclerView.Adapter mathAdapter,statisticsAdapter,calculusAdapter,cAdapter;
     DatabaseReference databaseReference;
-    RecyclerView mathRecyclerView;
-    RecyclerView algebraRecyclerView;
-    TextView mathMore, statisticsMore;
+    RecyclerView mathRecyclerView,algebraRecyclerView,calculusRecyclerView,cRecyclerView;
+    TextView mathMore, statisticsMore,calculusMore,cMore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mathTutorings = new ArrayList<>();
-        algebraTutorings = new ArrayList<>();
+        statisticsTutoring = new ArrayList<>();
+        calculusTutorings = new ArrayList<>();
+        cTutorings = new ArrayList<>();
         listOfSubjects = new ArrayList<>();
         databaseReference =  FirebaseDatabase.getInstance().getReference();
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -54,10 +54,17 @@ public class ActivityMain extends AppCompatActivity {
                     if(tutoring.getSubject().getSubjectId().equals("2")){
                         mathTutorings.add(tutoring);
                     }else if(tutoring.getSubject().getSubjectId().equals("1")){
-                        algebraTutorings.add(tutoring);
+                        statisticsTutoring.add(tutoring);
+                    }else if(tutoring.getSubject().getSubjectId().equals("4")){
+                        cTutorings.add(tutoring);
+                    }else if(tutoring.getSubject().getSubjectId().equals("3")){
+                        calculusTutorings.add(tutoring);
                     }
                 }
-                subjectAdapter.notifyDataSetChanged();
+                mathAdapter.notifyDataSetChanged();
+                statisticsAdapter.notifyDataSetChanged();
+                calculusAdapter.notifyDataSetChanged();
+                cAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -68,8 +75,12 @@ public class ActivityMain extends AppCompatActivity {
 
         mathRecyclerView = (RecyclerView) findViewById(R.id.math_recycler_view);
         algebraRecyclerView = (RecyclerView) findViewById(R.id.statistics_recycler_view);
+        calculusRecyclerView = (RecyclerView) findViewById(R.id.calculus_recycler_view);
+        cRecyclerView = (RecyclerView) findViewById(R.id.c_recycler_view);
         mathMore = findViewById(R.id.math_more);
         statisticsMore = findViewById(R.id.statistics_more);
+        calculusMore = findViewById(R.id.calculus_more);
+        cMore = findViewById(R.id.c_more);
 
         mathMore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +88,6 @@ public class ActivityMain extends AppCompatActivity {
                 Intent intent = new Intent(ActivityMain.this,ActivityAllSubjects.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -87,18 +97,43 @@ public class ActivityMain extends AppCompatActivity {
                Intent intent = new Intent(ActivityMain.this,ActivityAllSubjects.class);
                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
                startActivity(intent);
-               finish();
            }
         });
+
+        calculusMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityMain.this,ActivityAllSubjects.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+
+        cMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityMain.this,ActivityAllSubjects.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
         // Create adapter passing in the sample user data
-        subjectAdapter = new AdapterTutorings(this,mathTutorings);
-        mathRecyclerView.setAdapter(subjectAdapter);
-        RecyclerView.Adapter subjectAdapter2 = new AdapterTutorings(this,algebraTutorings);
-        algebraRecyclerView.setAdapter(subjectAdapter2);
-        LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        mathAdapter = new AdapterTutorings(this,mathTutorings);
+        mathRecyclerView.setAdapter(mathAdapter);
+        statisticsAdapter = new AdapterTutorings(this,statisticsTutoring);
+        algebraRecyclerView.setAdapter(statisticsAdapter);
+        calculusAdapter = new AdapterTutorings(this,calculusTutorings);
+        calculusRecyclerView.setAdapter(calculusAdapter);
+        cAdapter = new AdapterTutorings(this,cTutorings);
+        cRecyclerView.setAdapter(cAdapter);
+        LinearLayoutManager hMathLayout = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         LinearLayoutManager horizontalLayoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        mathRecyclerView.setLayoutManager(horizontalLayoutManager);
+        LinearLayoutManager horizontalLayoutManager3 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager horizontalLayoutManager4 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        mathRecyclerView.setLayoutManager(hMathLayout);
         algebraRecyclerView.setLayoutManager(horizontalLayoutManager2);
+        calculusRecyclerView.setLayoutManager(horizontalLayoutManager3);
+        cRecyclerView.setLayoutManager(horizontalLayoutManager4);
     }
 
     @Override

@@ -26,6 +26,7 @@ public class ActivityAllSubjects extends AppCompatActivity {
     private RecyclerView.Adapter subjectAdapter;
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
+    boolean init=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +37,14 @@ public class ActivityAllSubjects extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot snapshot : dataSnapshot.child("subjects").getChildren()){
-                    Subject subject = snapshot.getValue(Subject.class);
-                    subjects.add(subject);
+                if(!init){
+                    for(DataSnapshot snapshot : dataSnapshot.child("subjects").getChildren()){
+                        Subject subject = snapshot.getValue(Subject.class);
+                        subjects.add(subject);
+                    }
+                    subjectAdapter.notifyDataSetChanged();
+                    init=true;
                 }
-                subjectAdapter.notifyDataSetChanged();
             }
 
             @Override

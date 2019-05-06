@@ -19,7 +19,7 @@
             android:id="@+id/math_subject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Math"
+            android:text="@string/math"
             android:layout_gravity="left"
             android:clickable="true"
             android:textStyle="bold"
@@ -60,7 +60,7 @@
             android:id="@+id/statistics_subject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Statistics"
+            android:text="@string/statistics"
             android:layout_gravity="left"
             android:clickable="true"
             android:textStyle="bold"
@@ -81,6 +81,84 @@
             />
         <TextView
             android:id="@+id/statistics_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="See more"
+            android:layout_gravity="right"
+            android:clickable="true"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:layout_margin="@dimen/margin"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/c_subject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/c"
+            android:layout_gravity="left"
+            android:clickable="true"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:layout_margin="@dimen/margin"
+            android:textSize="@dimen/highlight_size"
+            />
+        <android.support.v7.widget.RecyclerView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/c_recycler_view"
+            android:scrollbars="horizontal"
+            android:orientation="horizontal"
+            xmlns:tools="http://schemas.android.com/tools"
+            tools:listitem="@layout/item_subject"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:scrollbarStyle="outsideOverlay"
+            />
+        <TextView
+            android:id="@+id/c_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="See more"
+            android:layout_gravity="right"
+            android:clickable="true"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:layout_margin="@dimen/margin"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/calculus_subject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/calculus"
+            android:layout_gravity="left"
+            android:clickable="true"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:layout_margin="@dimen/margin"
+            android:textSize="@dimen/highlight_size"
+            />
+        <android.support.v7.widget.RecyclerView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/calculus_recycler_view"
+            android:scrollbars="horizontal"
+            android:orientation="horizontal"
+            xmlns:tools="http://schemas.android.com/tools"
+            tools:listitem="@layout/item_subject"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:scrollbarStyle="outsideOverlay"
+            />
+        <TextView
+            android:id="@+id/calculus_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="See more"

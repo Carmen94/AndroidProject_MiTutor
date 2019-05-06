@@ -1,7 +1,15 @@
 package com.iteso.mitutor;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -14,11 +22,14 @@ import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.iteso.mitutor.beans.Chat;
 import com.iteso.mitutor.beans.ChatMessage;
-import com.iteso.mitutor.beans.Subject;
 import com.iteso.mitutor.beans.Tutoring;
 import com.iteso.mitutor.beans.User;
 import com.iteso.mitutor.tools.Constants;
@@ -26,6 +37,8 @@ import com.iteso.mitutor.tools.Constants;
 
 public class ActivityChat extends AppCompatActivity {
     Chat chat;
+    FirebaseAuth auth;
+    FirebaseUser firebaseUser;
     Tutoring tutoring;
     String chatKey;
     FloatingActionButton sendButton;
@@ -33,21 +46,50 @@ public class ActivityChat extends AppCompatActivity {
     EditText input;
     private FirebaseListAdapter<ChatMessage> chatAdapter;
     DatabaseReference databaseReference;
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context=this;
+        auth = FirebaseAuth.getInstance();
+        firebaseUser = auth.getCurrentUser();
         setContentView(R.layout.activity_chat);
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        final DatabaseReference chatReference = databaseReference.child("chats");
         chat = getIntent().getParcelableExtra(Constants.CHAT);
         if(chat==null){
             tutoring = getIntent().getParcelableExtra(Constants.TUTORING);
-            User user = new User("Carmen","karumen1994@hotmail.com",1);
+            User user = new User(firebaseUser.getDisplayName(),firebaseUser.getEmail(),firebaseUser.getUid());
             chat = new Chat(user,tutoring.getTutor());
+            final DatabaseReference db = chatReference.child(chat.getChatKey());
+            db.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        db.setValue(chat);
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
         }
         this.setTitle(chat.getTutor().getFirstName()+" "+chat.getTutor().getLastName());
         chatKey=chat.getChatKey();
         sendButton = findViewById(R.id.send_button);
         input = findViewById(R.id.input);
-        databaseReference =  FirebaseDatabase.getInstance().getReference().child("chats");
+        databaseReference =  FirebaseDatabase.getInstance().getReference().child("chat_messages");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+              chatAdapter.notifyDataSetChanged();
+              showNotification(context);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,6 +187,34 @@ public class ActivityChat extends AppCompatActivity {
         Intent intent = new Intent(ActivityChat.this,ActivitySearch.class);
         startActivity(intent);
         finish();
+    }
+
+    public void showNotification(Context context){
+        createNotificationChannel(context);
+        Intent intent = new Intent(context, ActivityMain.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "default")
+                .setSmallIcon(R.drawable.math_tutor)
+                .setContentTitle(context.getString(R.string.notification_title))
+                .setContentText("Notification message")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+        notificationManager.notify(1, builder.build());
+    }
+
+    private void createNotificationChannel(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = context.getString(R.string.app_name);
+            String description = context.getString(R.string.project_id);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("default", name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
 }

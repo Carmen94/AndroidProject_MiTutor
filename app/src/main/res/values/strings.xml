@@ -53,6 +53,13 @@
         <item>Bachelor</item>
     </string-array>
 
+    <string name="notification_title">You have a new chat message</string>
+
     <string name="subject">Math</string>
+
+    <string name="statistics">Statistics</string>
+    <string name="math">Math</string>
+    <string name="calculus">Calculus</string>
+    <string name="c">C Programming</string>
 </resources>
 

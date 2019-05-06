@@ -10,12 +10,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.iteso.mitutor.beans.Chat;
+import com.iteso.mitutor.beans.ChatMessage;
 import com.iteso.mitutor.beans.Subject;
 import com.iteso.mitutor.beans.Tutor;
 import com.iteso.mitutor.beans.User;
@@ -25,36 +27,47 @@ import java.util.ArrayList;
 
 public class ActivityAllChats extends AppCompatActivity {
     private ArrayList<Chat> chats;
-    private RecyclerView.Adapter messageAdapter;
+    private RecyclerView.Adapter chatsAdapter;
     RecyclerView recyclerView;
+    FirebaseAuth auth;
+    FirebaseUser firebaseUser;
+    boolean init=false;
     DatabaseReference databaseReference;
-    User user = new User("Carmen","karumen1994@hotmail.com",1);
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        auth = FirebaseAuth.getInstance();
+        firebaseUser = auth.getCurrentUser();
         setContentView(R.layout.activity_all_chats);
         recyclerView = findViewById(R.id.all_chats_recycler_view);
         chats = new ArrayList<>();
+        user = new User(firebaseUser.getDisplayName(),firebaseUser.getEmail(),firebaseUser.getUid());
         databaseReference =  FirebaseDatabase.getInstance().getReference();
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot snapshot : dataSnapshot.child("tutors").getChildren()){
-                    Tutor tutor = snapshot.getValue(Tutor.class);
-                    Chat newChat = new Chat(user,tutor);
-                    chats.add(newChat);
+                if(!init){
+                    for(DataSnapshot snapshot : dataSnapshot.child("chats").getChildren()){
+                        Chat chat = snapshot.getValue(Chat.class);
+                        if(chat!=null){
+                            String token[] = chat.getChatKey().split("_");
+                            if(token[0].equals(user.getUserId())){
+                                chats.add(chat);
+                            }
+                        }
+                    }
+                    init=true;
                 }
-                messageAdapter.notifyDataSetChanged();
+                chatsAdapter.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }});
-
-        messageAdapter = new AdapterAllChats(this,chats);
-        recyclerView.setAdapter(messageAdapter);
+        chatsAdapter = new AdapterAllChats(this,chats);
+        recyclerView.setAdapter(chatsAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 

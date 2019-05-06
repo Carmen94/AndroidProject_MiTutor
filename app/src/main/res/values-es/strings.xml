@@ -52,5 +52,12 @@
         <item>Licenciatura</item>
     </string-array>
 
+
+    <string name="notification_title">Tienes un nuevo mensaje</string>
+
     <string name="subject">Matematicas</string>
+    <string name="statistics">Estadística</string>
+    <string name="math">Matemáticas</string>
+    <string name="calculus">Cálculo</string>
+    <string name="c">Programación en C</string>
 </resources>

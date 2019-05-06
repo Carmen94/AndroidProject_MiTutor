@@ -29,7 +29,7 @@ public class ActivitySubject extends AppCompatActivity {
     private RecyclerView.Adapter subjectAdapter;
     RecyclerView subjectRecyclerView;
     DatabaseReference databaseReference;
-
+    boolean init=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,16 +43,19 @@ public class ActivitySubject extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot snapshot : dataSnapshot.child("tutorings").getChildren()){
-                    Tutoring tutoring = snapshot.getValue(Tutoring.class);
-                    allTutorings.add(tutoring);
-                }
-                for (Tutoring t: allTutorings) {
-                    if (t.getSubject().getSubjectId().equals(subject.getSubjectId())) {
-                        tutorings.add(t);
+                if(!init){
+                    for(DataSnapshot snapshot : dataSnapshot.child("tutorings").getChildren()){
+                        Tutoring tutoring = snapshot.getValue(Tutoring.class);
+                        allTutorings.add(tutoring);
                     }
+                    for (Tutoring t: allTutorings) {
+                        if (t.getSubject().getSubjectId().equals(subject.getSubjectId())) {
+                            tutorings.add(t);
+                        }
+                    }
+                    subjectAdapter.notifyDataSetChanged();
+                    init=true;
                 }
-                subjectAdapter.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
