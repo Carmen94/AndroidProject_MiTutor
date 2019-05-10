@@ -36,7 +36,9 @@
         <activity
             android:name=".ActivityMain"
             android:screenOrientation="portrait" />
-        <activity android:name=".ActivityChat" />
+        <activity
+            android:name=".ActivityChat"
+            android:parentActivityName=".ActivityMain" />
         <activity android:name=".ActivitySubject" />
         <activity
             android:name=".ActivityLogin"
