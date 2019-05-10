@@ -6,25 +6,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/margin"
+    android:background="@drawable/backgroung"
     tools:context=".ActivityLogin">
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:textSize="@dimen/login_title"
-        android:fontFamily="serif"
-        android:textStyle="bold"
-        android:textColor="@color/colorDarkPink"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp"
+        android:text="@string/app_name"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-condensed-medium "
+        android:textColor="@color/colorDarkBlue"
+        android:textSize="55sp"
         />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="205dp"
         android:layout_height="183dp"
-        android:layout_below="@id/name"
+        android:layout_below="@id/textview"
         android:layout_centerHorizontal="true"
         android:src="@drawable/monkeylaptop" />
 
@@ -83,10 +86,10 @@
         <!--/>-->
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:paddingTop="@dimen/padd"
+        android:paddingTop="90dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/imageView"/>
 

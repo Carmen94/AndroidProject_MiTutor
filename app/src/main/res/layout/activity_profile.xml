@@ -17,7 +17,7 @@
         android:textStyle="bold"
         />
     <TextView
-
+        android:id="@+id/cicle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/title"
@@ -41,7 +41,7 @@
         android:text="@string/user_name"
         android:layout_below="@id/imageView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/login_title"
+        android:layout_marginTop="40dp"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="@dimen/subtitle"/>
 

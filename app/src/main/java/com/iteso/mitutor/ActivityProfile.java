@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -15,16 +16,21 @@ public class ActivityProfile extends AppCompatActivity {
     FirebaseUser user;
     TextView username;
     TextView mail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
+
         username = findViewById(R.id.user_name);
         mail = findViewById(R.id.user_mail);
+
+
         username.setText(user.getDisplayName());
         mail.setText(user.getEmail());
+
     }
 
     @Override

@@ -7,13 +7,13 @@
     tools:context=".ActivityMain"
     >
     <TextView
+        android:id="@+id/profile_tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tutors"
-        android:layout_gravity="left"
-        android:textSize="@dimen/title"
-        android:fontFamily="sans-serif-condensed"
-        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/view_title"
+        android:layout_gravity="center"
+        android:textStyle="bold"
         />
 
     <android.support.v7.widget.RecyclerView
