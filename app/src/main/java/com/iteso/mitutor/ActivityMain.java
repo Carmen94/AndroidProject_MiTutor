@@ -1,7 +1,16 @@
 package com.iteso.mitutor;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,20 +37,39 @@ public class ActivityMain extends AppCompatActivity {
     private ArrayList<Tutoring> mathTutorings,statisticsTutoring,calculusTutorings,cTutorings;
     private ArrayList<Subject> listOfSubjects;
     private RecyclerView.Adapter mathAdapter,statisticsAdapter,calculusAdapter,cAdapter;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference, chatReference;
     RecyclerView mathRecyclerView,algebraRecyclerView,calculusRecyclerView,cRecyclerView;
     TextView mathMore, statisticsMore,calculusMore,cMore;
+    Context context;
+    boolean initialized=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        context=getApplicationContext();
         mathTutorings = new ArrayList<>();
         statisticsTutoring = new ArrayList<>();
         calculusTutorings = new ArrayList<>();
         cTutorings = new ArrayList<>();
         listOfSubjects = new ArrayList<>();
         databaseReference =  FirebaseDatabase.getInstance().getReference();
+        chatReference =  FirebaseDatabase.getInstance().getReference().child("chat_messages");
+        chatReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(initialized){
+                    showNotification(context);
+                }else{
+                    initialized=true;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -195,6 +223,37 @@ public class ActivityMain extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
         //finish();
+    }
+
+    public void showNotification(Context context){
+        createNotificationChannel(context);
+        Intent intent = new Intent(context, ActivityAllChats.class);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+        stackBuilder.addNextIntentWithParentStack(intent);
+        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "default")
+                .setSmallIcon(R.drawable.ic_monkey)
+                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),R.drawable.monkeylaptop))
+                .setContentTitle(context.getString(R.string.notification_title))
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setContentIntent(resultPendingIntent)
+                .setAutoCancel(false);
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+        notificationManager.notify(1, builder.build());
+    }
+
+    private void createNotificationChannel(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = context.getString(R.string.app_name);
+            String description = context.getString(R.string.project_id);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("default", name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
 }
