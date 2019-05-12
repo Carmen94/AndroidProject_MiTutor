@@ -11,6 +11,7 @@
         android:roundIcon="@drawable/monkeylaptop"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ActivityFavorites"></activity>
         <activity
             android:name=".ActivitySplash"
             android:screenOrientation="portrait"
@@ -19,7 +20,6 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
         </activity>
         <activity android:name=".ActivityAllChats" />
@@ -29,8 +29,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ActivitySearch"
-            android:screenOrientation="portrait"
-           />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ActivityProfile"
             android:screenOrientation="portrait" />
@@ -44,8 +43,7 @@
         <activity
             android:name=".ActivityLogin"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,6 +35,7 @@ public class ActivityProfile extends AppCompatActivity {
     private RecyclerView.Adapter subjectAdapter;
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
+    ImageView add;
     boolean init=false;
 
 
@@ -47,6 +49,7 @@ public class ActivityProfile extends AppCompatActivity {
         mail = findViewById(R.id.user_mail);
         imageView = findViewById(R.id.imageView);
 
+        add = findViewById(R.id.add_circle);
         username.setText(user.getDisplayName());
         mail.setText(user.getEmail());
         if(user.getPhotoUrl() != null){
@@ -76,6 +79,15 @@ public class ActivityProfile extends AppCompatActivity {
         subjectAdapter = new AdapterAllSubjects(this,subjects);
         recyclerView.setAdapter(subjectAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityProfile.this, ActivityFavorites.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
 
     }
     @Override

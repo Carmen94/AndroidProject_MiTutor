@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/margin"
-    tools:context=".ActivityProfile">
+    tools:context=".ActivityProfile"
+
+    >
 
     <TextView
         android:id="@+id/profile_tag"
@@ -76,6 +78,16 @@
         android:textStyle="bold"
         android:textColor="@color/colorPrimaryDark"/>
 
+    <ImageView
+        android:id="@+id/add_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add_circle"
+        android:layout_below="@id/subtitle"
+        android:layout_centerHorizontal="true"
+
+        />
+
     <android.support.v7.widget.RecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/all_subjects_recycler_view"
@@ -83,10 +95,10 @@
         android:orientation="horizontal"
         xmlns:tools="http://schemas.android.com/tools"
         tools:listitem="@layout/item_light_subject"
-        android:layout_margin="@dimen/padd"
+        android:layout_margin="10dp"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:scrollbarStyle="outsideOverlay"
-        android:layout_below="@id/subtitle"
+        android:layout_below="@id/add_circle"
         />
 </RelativeLayout>
