@@ -17,7 +17,34 @@
         android:textStyle="bold"
         />
 
-    <android.support.v7.widget.SearchView
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="50dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_search_gray"
+            android:layout_gravity="center_vertical"
+            android:paddingHorizontal="5dp"
+            />
+
+
+        <EditText
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext"
+            android:hint="@string/search_hint"
+            android:padding="10dp"
+            app:iconifiedByDefault="false"
+            android:layout_margin="@dimen/margin"/>
+
+    </LinearLayout>
+
+    <!--<android.support.v7.widget.SearchView
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,9 +53,9 @@
         app:queryHint="@string/search_hint"
         app:iconifiedByDefault="false"
         android:layout_margin="@dimen/margin"
-        />
+        />-->
 
-    <TextView
+   <!-- <TextView
         android:id="@+id/recent_tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,6 +75,19 @@
         android:layout_marginTop="@dimen/margin"
         android:background="@color/colorLightGray"
         android:layout_below="@id/recent_tag"/>
-
+-->
+    <android.support.v7.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/all_subjects_recycler_view"
+        android:scrollbars="horizontal"
+        android:orientation="horizontal"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:listitem="@layout/item_light_subject"
+        android:layout_margin="@dimen/padd"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:scrollbarStyle="outsideOverlay"
+        android:layout_below="@id/linearLayout"
+        />
 
 </RelativeLayout>

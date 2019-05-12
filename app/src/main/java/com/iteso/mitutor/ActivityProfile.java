@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -16,20 +17,24 @@ public class ActivityProfile extends AppCompatActivity {
     FirebaseUser user;
     TextView username;
     TextView mail;
-
+    String photoUrl;
+    ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
-
         username = findViewById(R.id.user_name);
         mail = findViewById(R.id.user_mail);
-
+        imageView = findViewById(R.id.imageView);
 
         username.setText(user.getDisplayName());
         mail.setText(user.getEmail());
+        if(user.getPhotoUrl() != null){
+            Glide.with(this).load(user.getPhotoUrl().toString()).into(imageView);
+        }
+
 
     }
 

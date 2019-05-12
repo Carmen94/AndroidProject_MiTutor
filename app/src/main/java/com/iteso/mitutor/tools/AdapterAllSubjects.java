@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -19,14 +21,18 @@ import com.iteso.mitutor.R;
 import com.iteso.mitutor.beans.Subject;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class AdapterAllSubjects extends RecyclerView.Adapter<AdapterAllSubjects.ViewHolder> {
+public class AdapterAllSubjects extends RecyclerView.Adapter<AdapterAllSubjects.ViewHolder> implements Filterable {
     private ArrayList<Subject> subjectDataSet;
+    private ArrayList<Subject> subjectDataSetFull;
     private Context context;
+
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public AdapterAllSubjects(Context context, ArrayList<Subject> subjectDataSet) {
         this.subjectDataSet = subjectDataSet;
+        subjectDataSetFull = new ArrayList<>(subjectDataSet);
         this.context = context;
     }
     // Create new views (invoked by the layout manager)
@@ -36,7 +42,6 @@ public class AdapterAllSubjects extends RecyclerView.Adapter<AdapterAllSubjects.
         AdapterAllSubjects.ViewHolder vh = new AdapterAllSubjects.ViewHolder(v);
         return vh;
     }
-
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public CardView mCardView;
@@ -54,8 +59,6 @@ public class AdapterAllSubjects extends RecyclerView.Adapter<AdapterAllSubjects.
             subjectImg = v.findViewById(R.id.subject_img);
         }
     }
-
-
     @Override
     public void onBindViewHolder(final AdapterAllSubjects.ViewHolder holder, final int position) {
         holder.subjectName.setText(subjectDataSet.get(position).getSubjectName());
@@ -83,5 +86,36 @@ public class AdapterAllSubjects extends RecyclerView.Adapter<AdapterAllSubjects.
     public int getItemCount() {
         return subjectDataSet.size();
     }
+    @Override
+    public Filter getFilter() {
+        return exampleFilter;
+    }
+    private Filter exampleFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Subject> filteredList = new ArrayList<>();
+            if(constraint == null || constraint.length()== 0){
+                filteredList.addAll(subjectDataSetFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
 
+                for(Subject subject: subjectDataSetFull) {
+                    if(subject.getSubjectName().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(subject);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            subjectDataSet.clear();
+            subjectDataSet.addAll((List)results.values);
+            notifyDataSetChanged();
+        }
+    };
 }
