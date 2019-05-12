@@ -1,5 +1,6 @@
 package com.iteso.mitutor;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -29,113 +30,64 @@ import com.iteso.mitutor.tools.AdapterSearch;
 import java.util.ArrayList;
 
 public class ActivitySearch extends AppCompatActivity{
-    private ArrayList<Subject> subjects;
+    //private ArrayList<Subject> subjects;
 
 
-    private RecyclerView.Adapter subjectAdapter;
     RecyclerView recyclerView;
-    DatabaseReference databaseReference;
-    boolean init=false;
-    EditText editText;
-
+    private AdapterSearch adapter;
+    private Context c;
     ArrayList<Subject> arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        recyclerView = findViewById(R.id.all_subjects_recycler_view);
+        fillList();
+        setUpRecyclerView();
+
+    }
+
+    private void fillList(){
         arrayList = new ArrayList<>();
-        editText = (EditText) findViewById(R.id.search_view);
-
-        editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if(!s.toString().isEmpty()){
-                    search(s.toString());
-                } else {
-                    search("");
-                }
-            }
-        });
-
-
-
-
-
-
-        subjects = new ArrayList<>();
-        databaseReference =  FirebaseDatabase.getInstance().getReference();
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(!init){
-                    for(DataSnapshot snapshot : dataSnapshot.child("subjects").getChildren()){
-                        Subject subject = snapshot.getValue(Subject.class);
-                        subjects.add(subject);
-                    }
-                    subjectAdapter.notifyDataSetChanged();
-                    init=true;
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }});
-        subjectAdapter = new AdapterAllSubjects(this,subjects);
-        recyclerView.setAdapter(subjectAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        arrayList.add(new Subject("1", "Statistics"));
+        arrayList.add(new Subject("2", "Mathamethics"));
+        arrayList.add(new Subject("3", "Differential Calculus"));
+        arrayList.add(new Subject("4", "C Programming"));
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
+    private void setUpRecyclerView() {
+        RecyclerView recyclerView = findViewById(R.id.all_subjects_recycler_view);
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        adapter = new AdapterSearch(this,arrayList);
 
-
-    private void search(String s){
-        Query query = databaseReference.orderByChild("subjectName").startAt(s).endAt(s + "\uf8ff");
-
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.hasChildren()){
-                    arrayList.clear();
-                    for(DataSnapshot dss: dataSnapshot.getChildren()){
-                        final Subject subject = dss.getValue(Subject.class);
-                        arrayList.add(subject);
-                    }
-
-                    AdapterSearch adapterSearch = new AdapterSearch(getApplicationContext(), arrayList);
-                    recyclerView.setAdapter(adapterSearch);
-                    adapterSearch.notifyDataSetChanged();
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_subject, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_search, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
         return true;
     }
     @Override

@@ -16,8 +16,16 @@
         android:layout_centerHorizontal="true"
         android:textStyle="bold"
         />
+    <View
+        android:id="@+id/line"
+        android:layout_width="fill_parent"
+        android:layout_marginHorizontal="@dimen/banner_size"
+        android:layout_height="@dimen/line"
+        android:layout_marginTop="@dimen/margin"
+        android:background="@color/colorLightGray"
+        android:layout_below="@id/profile_tag"/>
 
-    <LinearLayout
+    <!--<LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,7 +51,7 @@
             android:layout_margin="@dimen/margin"/>
 
     </LinearLayout>
-
+-->
     <!--<android.support.v7.widget.SearchView
         android:id="@+id/search_view"
         android:layout_width="match_parent"
@@ -87,7 +95,7 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:scrollbarStyle="outsideOverlay"
-        android:layout_below="@id/linearLayout"
+        android:layout_below="@id/line"
         />
 
 </RelativeLayout>
